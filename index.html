@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My First Leaflet Map</title>
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+    integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+    crossorigin=""/>
+
+    <!-- Leaflet JavaScript -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+    integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+    crossorigin=""></script>
+
+    <style>
+        #map {
+            height: 100vh;
+        }
+    </style>
+
+</head>
+<body>
+
+    <div id="map"></div>
+    
+    <script>
+        var map = L.map('map').setView([29.6516, -82.3248], 13);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Outline the Swamp Stadium (Ben Hill Griffin Stadium)
+        var stadiumPolygon = L.polygon([
+            [29.64850, -82.34900],
+            [29.64850, -82.35000],
+            [29.64950, -82.35000]
+        ], {
+            color: 'blue',
+            fillColor: '#0000FF',
+            fillOpacity: 0.5
+        }).addTo(map);
+
+        // Add popup to the stadium polygon
+        stadiumPolygon.bindPopup("This is the Swamp Stadium (Ben Hill Griffin Stadium).");
+
+        // Add a line
+        var polyline = L.polyline([
+            [29.6516, -82.3248],
+            [29.6616, -82.3248]
+        ], {color: 'blue'}).addTo(map);
+
+        // Add popup to the line
+        polyline.bindPopup("This is a polyline.");
+
+        // Add a triangle (polygon)
+        var polygon = L.polygon([
+            [29.6516, -82.3248],
+            [29.6616, -82.3148],
+            [29.6416, -82.3148]
+        ], {color: 'green'}).addTo(map);
+
+        // Add popup to the triangle polygon
+        polygon.bindPopup("This is a triangle polygon.");
+
+        // Add a circle
+        var circle = L.circle([29.6516, -82.3248], {
+            color: 'red',
+            fillColor: '#f03',
+            fillOpacity: 0.5,
+            radius: 500
+        }).addTo(map);
+
+        // Add popup to the circle
+        circle.bindPopup("This is a circle.");
+    </script>
+
+    
+</body>
+</html>
